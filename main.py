@@ -1,11 +1,7 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
 
 app=FastAPI()
 
-@app.get("/hello")
-def sayHello():
-    return {"message": "안녕하세요 슈퍼코딩!"}
-
-@app.get("/")
-def sayWelcome():
-    return{"message": "환영합니다."}
+app.mount("/", StaticFiles(directory="static",html=True), name="static")
